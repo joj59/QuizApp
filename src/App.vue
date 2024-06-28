@@ -1,27 +1,10 @@
 <script setup>
-import { ref, watch } from 'vue';
-import qData from './data/quizzes.json';
-import Card from './components/Card.vue';
-
-const quizzes = ref(qData);
-const search = ref('');
-
-watch(search, () => {
-    quizzes.value = qData.filter(quiz => quiz.name.toLowerCase().includes(search.value.toLowerCase()));
-});
+import { RouterLink, RouterView } from 'vue-router';
 </script>
 
 <template>
     <main>
-        <div class="container">
-            <header>
-                <h1>Quizzes</h1>
-                <input v-model.trim="search" type="text" placeholder="Search..." />
-            </header>
-            <div class="options-container">
-                <Card v-for="quiz in quizzes" :key="quiz.id" :quiz="quiz" />
-            </div>
-        </div>
+        <RouterView />
     </main>
 </template>
 
@@ -30,29 +13,5 @@ main {
     display: flex;
     justify-content: center;
     width: 100vw;
-    .container {
-        width: 90%;
-
-        header {
-            margin: 3rem 0 1rem 0;
-            display: flex;
-            align-items: center;
-
-            h1 {
-                font-weight: bold;
-                margin-right: 3rem;
-            }
-            input {
-                height: 3rem;
-                width: 30rem;
-            }
-        }
-
-        .options-container {
-            display: flex;
-            flex-wrap: wrap;
-            margin-top: 4rem;
-        }
-    }
 }
 </style>
