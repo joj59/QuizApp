@@ -1,19 +1,13 @@
 <script setup>
 import { ref, watch, defineProps } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
 //const {define} = defineProps(['']);
 //const define = ref(define);
-const router = useRouter();
 
 import qData from '../data/quizzes.json';
 import Card from '../components/Card.vue';
 
 const quizzes = ref(qData);
 const search = ref('');
-
-const startQuiz = () => {
-    console.log(router);
-};
 
 watch(search, () => {
     quizzes.value = qData.filter(quiz => quiz.name.toLowerCase().includes(search.value.toLowerCase()));
@@ -26,7 +20,7 @@ watch(search, () => {
             <input v-model.trim="search" type="text" placeholder="Search..." />
         </header>
         <div class="options-container">
-            <Card v-for="quiz in quizzes" :key="quiz.id" :quiz="quiz" @click="startQuiz" />
+            <Card v-for="quiz in quizzes" :key="quiz.id" :quiz="quiz" />
         </div>
     </div>
 </template>
