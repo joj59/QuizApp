@@ -19,7 +19,7 @@ watch(search, () => {
             </header>
             <div class="options-container">
                 <div v-for="quiz in quizzes" :key="quiz.id" class="card">
-                    <img :src="quiz.img" alt="" />
+                    <img :src="quiz.img" alt="image" />
                     <div class="card-text">
                         <h2>{{ quiz.name }}</h2>
                         <p>{{ quiz.questions.length }}</p>
