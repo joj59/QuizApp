@@ -1,7 +1,14 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router';
-import { ref, watch, defineProps } from 'vue';
+import { ref, watch, defineProps, defineEmits } from 'vue';
 const { question } = defineProps(['question']);
+
+const emit = defineEmits(['selectOption']);
+
+const emitSelectedOption = isCorrect => {
+    emit('selectOption', isCorrect);
+};
+
 // const define = ref(define);
 </script>
 
@@ -11,7 +18,7 @@ const { question } = defineProps(['question']);
             <h1 class="question">{{ question.text }}</h1>
         </div>
         <div class="options-container">
-            <div class="option" v-for="option in question.options" :key="option.id">
+            <div class="option" v-for="option in question.options" :key="option.id" @click="emitSelectedOption(option.isCorrect)">
                 <p class="option-label">{{ option.label }}</p>
                 <div class="option-value">
                     <p>{{ option.text }}</p>

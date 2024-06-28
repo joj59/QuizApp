@@ -1,7 +1,7 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router';
 import { ref, watch, defineProps } from 'vue';
-const { questionStatus } = defineProps(['questionStatus']);
+const { questionStatus, computedPercentage } = defineProps(['questionStatus', 'computedPercentage']);
 // const define = ref(define);
 </script>
 
@@ -9,7 +9,7 @@ const { questionStatus } = defineProps(['questionStatus']);
     <header>
         <h3>Question {{ questionStatus }}</h3>
         <div class="bar">
-            <div class="completion"></div>
+            <div class="completion" :style="{ width: computedPercentage }"></div>
         </div>
     </header>
 </template>
@@ -19,7 +19,7 @@ header {
     margin-top: 2rem;
 
     .bar {
-        border: 0.2rem solid red;
+        border: 0.1rem solid black;
         height: 5vh;
         margin: 1rem;
 
